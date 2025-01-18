@@ -1,0 +1,154 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+
+@layer components{
+  
+  /* NAVBAR */
+.navbar {
+  @apply min-w-full bg-primary flex text-white px-5 ;
+  /* position: sticky; */
+  align-items: center;
+  position: relative; 
+  height: 64px;
+}
+
+.navbar .left {
+  @apply flex text-center items-center;
+  justify-content: flex-start;
+}
+
+.navbar .right {
+  @apply w-full flex items-center;
+  justify-content: flex-end;
+  text-align: center;
+}
+
+.navbar .user {
+  @apply absolute my-2 z-10 text-primary text-left bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-white dark:divide-gray-200;
+  inset-inline-end: 20px; /* Positioning the dropdown */
+}
+
+.navbar .notification {
+  @apply absolute my-2 z-20 text-primary text-left bg-white divide-y divide-gray-100 rounded-lg shadow w-72 max-h-[80vh] overflow-auto dark:bg-white dark:divide-gray-200;
+  inset-inline-end: 70px; /* Positioning the dropdown */
+}
+.navbar .search {
+  @apply absolute my-2 z-50 text-primary text-left bg-white divide-y divide-gray-100 rounded-lg shadow w-full max-h-[80vh] overflow-auto dark:bg-white dark:divide-gray-200;
+  
+}
+
+.navButton {
+  @apply my-auto mx-1 flex justify-center items-center bg-secondary border-none rounded-full p-2 h-5 w-5 shadow; 
+}
+
+.navButton svg {
+  @apply text-lg;
+}
+/* Show search bar on larger screens and hide on smaller screens */
+.search-bar {
+  @apply hidden sm:block; /* Hide search on mobile */
+}
+
+
+
+
+  /* CREATE POST */
+
+  .create-form{
+    @apply hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full shadow bg-primary bg-opacity-15;
+        display: flex;
+        justify-content: center;
+        align-items: center; 
+        flex-direction: column;
+        height: 100%;
+  }
+
+  /* POST CARD */
+  .post-card{
+    @apply  w-11/12  md:w-6/12 bg-slate-50 border-solid shadow rounded-xl  border m-5 text-left h-fit; 
+  }
+  .post-card .title{
+    @apply flex items-center w-full px-2;
+    padding-bottom: 0.5rem;
+  }
+  .post-card .title p{
+    word-wrap: break-word;
+    white-space:pre-wrap;
+  }
+  .post-card .body{
+    @apply  w-full border-b p-2 pt-0;
+  }
+  .post-ellipsis {
+    @apply absolute z-10 text-primary text-left bg-white divide-y divide-gray-100 rounded-lg shadow w-32 border ;
+    inset-inline-end: 0px;
+  }
+  .post-popup{
+    
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 999; /* Layer behind the card popup */
+  }
+
+  .post-popup .card{
+    @apply w-11/12   md:w-6/12 bg-slate-50 border-solid shadow rounded-xl  border  text-left max-h-fit ;
+    position: fixed; /* Ensures the popup stays on the screen even when scrolling */
+    top: 50%; /* Vertically center */
+    left: 50%; /* Horizontally center */
+    transform: translate(-50%, -50%); /* Adjust the position to truly center */
+    z-index: 1000; /* Make sure the popup is above other content */
+    height: 95vh;
+  }
+
+
+
+  /* Login */
+  .login-bg {
+    @apply bg-gradient-to-bl from-primary to-primary-lighter overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 justify-center items-center w-full  h-[calc(100%-1rem)] max-h-full ;
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+    flex-direction: column;
+    height: 100%;
+  }
+
+  .login-card {
+    width: 40vw;
+
+  }
+  @media only screen and (max-width: 768px) {
+    .login-card {
+      width: 90vw;
+    }
+  }
+  @media only screen and (max-width: 1024px) {
+    .login-card {
+      width: 80vw;
+    }
+  }
+  
+
+  .loading-screen, .confirmation-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    color: white;
+  }
+  
+}
+
+
