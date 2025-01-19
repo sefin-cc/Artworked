@@ -47,7 +47,7 @@ const schema = yup.object().shape({
 
     //this wil be excuted if user clicked the submit
     const onCreatePost = async (data: CreateFormData) =>{
-
+        if (isLoading) return; 
         try{
             setIsLoading(true);
             const db = getFirestore(); 
@@ -56,7 +56,6 @@ const schema = yup.object().shape({
             const userId = await user?.uid;
             
             // Upload to Cloudinary
-            //const url = await uploadToCloudinary(userId, data);
             const url = await uploadPostToCloudinary(userId, data);
             
             await addDoc(postRef,{
@@ -183,8 +182,12 @@ const uploadPostToCloudinary = async (userId: string | undefined, data: CreateFo
                             
                         </div>
                         <input 
-                            className="text-white inline-flex items-center bg-primary hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg px-5 py-2.5 text-center" 
-                            type='submit'     
+                             className={`text-white inline-flex items-center bg-primary hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg px-5 py-2.5 text-center ${
+                                isLoading ? "opacity-50 cursor-not-allowed" : ""
+                            }`} 
+                            type="submit" 
+                            disabled={isLoading} 
+                            value={isLoading ? "Submitting..." : "Submit"}      
                         />
                     </form>
                 </div>
